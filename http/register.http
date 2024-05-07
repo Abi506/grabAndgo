@@ -1,0 +1,27 @@
+###  Register Api
+POST http://localhost:3001/register
+Content-Type: application/json
+
+{
+"studentId": "20cs76",
+  "email": "abinandhan506@psnacet.edu.in",
+  "password": "abi",
+  "name": "Abi Nandhan",
+  "phone": "1234567890",
+  "dietaryRestrictions": "None",
+  "street": "123 Street",
+  "city": "City",
+  "state": "State",
+  "zip": "12345",
+  "role": "student",
+  "verification_status": "unverified",
+  "notification_preferences": "Some notification preferences",
+  "profile_picture":"base64_encoded_image_string"
+}
+
+
+### Get register details for admins
+GET http://localhost:3001/register
+
+### Delete user for admins and user delete request
+DELETE http://localhost:3001/register/20cs76

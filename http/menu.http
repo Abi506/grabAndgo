@@ -1,0 +1,36 @@
+### adding new menu
+POST http://localhost:3001/menu
+Content-Type: application/json
+
+    {
+    "food_id": 331,
+    "name": "Chai Latte",
+    "description": "Chai latte is a Westernized version of the traditional Indian beverage, masala chai. It typically contains spiced tea concentrate and steamed milk.",
+    "category": "Indian-Inspired Beverage",
+    "price": 40,
+    "image_url": "http://example.com/chai_latte.jpg",
+    "available": 50
+  }
+
+### get all the menu
+GET http://localhost:3001/menu?
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWJpIE5hbmRoYW4iLCJpYXQiOjE3MTUxMDAxNTN9.VpCkVzmnN_3eYfDnKOZJU-66W25Mh0waOG15Zq8bqdk
+
+
+### get menu based on the id
+GET http://localhost:3001/menu/324
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWJpIE5hbmRoYW4iLCJpYXQiOjE3MTUxMDAxNTN9.VpCkVzmnN_3eYfDnKOZJU-66W25Mh0waOG15Zq8bqdk
+
+
+### delete the particular dish based on the id
+DELETE http://localhost:3001/menu/233
+
+
+### update the stock or update the availability of the food
+PUT http://localhost:3001/menu/324
+Content-Type: application/json
+
+{
+  "available":28
+}
+
