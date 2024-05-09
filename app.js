@@ -52,7 +52,7 @@ const initalizaDatabaseAndServer=async()=>{
         //Routes
         app.use('/register',registerRouter(data)); //register router
         app.use('/login',loginRouter(data)); //login router
-        app.use("/menu",authenticateToken,foodRouter(data)) //menu router
+        app.use("/menu",foodRouter(data)) //menu router
         app.listen(3001,()=>{
             console.log(`Server running at ${dbPath}`);
         })
