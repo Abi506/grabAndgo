@@ -1,0 +1,84 @@
+/* General container style */
+.menu-container {
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out; /* Smooth transition for the container */
+    cursor: pointer;
+}
+
+/* Hover effect for the container */
+.menu-container:hover {
+    transform: scale(0.95); /* Slight zoom-out effect */
+}
+
+/* Style for the food image container */
+.menu-food-image-container {
+    margin: 10px;
+    overflow: hidden; /* Ensure the image doesn't overflow */
+}
+
+/* Style for the food image */
+.menu-food-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 16px; /* Optional: adds rounded corners */
+    transition: transform 0.2s ease-in-out; /* Smooth transition for the image */
+}
+
+/* Hover effect for the image */
+.menu-container:hover .menu-food-image {
+    transform: scale(0.9); /* Zoom-out effect */
+}
+
+/* Style for the food menu heading */
+.food-menu-heading {
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    text-align: left;
+    margin-left: 5%;
+    font-weight: 700;
+}
+
+/* Style for the food menu description */
+.food-menu-para {
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 5%;
+    font-size: 14px;
+    overflow: hidden;
+    width: 70%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: 0px;
+}
+.food-menu-rating-para{
+    text-align: left;
+    margin-left: 5%;
+    font-size: 14px;
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+.food-menu-rating{
+    color: gold;
+    margin-right: 5px;
+    font-size: 26px;
+    border: 1px solid;
+    vertical-align: middle
+}
+.food-menu-price-para{
+    text-align: left;
+    margin-left:10px;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+}
+@media screen and (max-width: 500px) {
+    .menu-food-image {
+        height: 130px;
+    }
+    .food-menu-heading {
+        margin-left: 10%;
+    }
+    .food-menu-para {
+        margin-left: 10%;
+    }
+}

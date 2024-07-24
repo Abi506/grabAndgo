@@ -1,0 +1,72 @@
+.search-input-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin:20px;
+}
+.search-icon{
+    font-size:50px;
+    align-self: center;
+    border:2px solid black;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    padding:12px;
+    
+}
+.search-items-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.search-input{
+    padding:12px;
+    height: 50px;
+    width:50%;
+    outline: none;
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-left: transparent;
+}
+.search-list{
+    width:60%;
+    align-self: center;
+}
+.search-dish-image{
+    height: 100px;
+    width: 100px;
+    flex-wrap: wrap;
+    margin-right: 12px;
+}
+.search-dish-heading{
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 20px;
+}
+.search-dish-para{
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 12px;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width:500px;
+
+}
+@media screen and (max-width: 790px) {
+    .search-dish-para {
+        max-width: 300px;
+    }
+}
+@media screen and (max-width: 490px) {
+    .search-dish-para {
+        max-width: 150px;
+    }
+    .search-input{
+        width:70%;
+    }
+}
+@media screen and (max-width: 390px) {
+    .search-dish-para {
+        max-width: 150px;
+    }
+}

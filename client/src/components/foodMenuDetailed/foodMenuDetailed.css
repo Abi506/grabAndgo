@@ -1,0 +1,46 @@
+.food-heading-modal{
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 28px;
+    padding:10px;
+}
+.food-para-modal{
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    padding:10px;
+}
+.food-image-modal{
+    width:350px;
+    height: 250px;
+    margin:10px;
+    border-radius: 22px;
+}
+.food-star-rating-modal{
+    color:gold;
+    font-size: 22px;
+    border:1px solid;
+    margin-right: 10px;
+}
+.food-rating-price-container-modal{
+    display: flex;
+}
+.food-price-para-modal{
+    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: 400;
+}
+.input-order-quantity{
+    width: 70px;
+    height: 40px;
+    text-align: center;
+    margin:10px;
+    padding:10px;
+}
+.modal-close{
+    background:transparent;
+    border-radius:220px;
+    font-size: 30px;
+    color: rgb(141, 132, 132);
+    cursor: pointer;
+    border:none;
+}

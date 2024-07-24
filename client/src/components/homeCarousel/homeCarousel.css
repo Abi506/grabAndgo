@@ -1,0 +1,4 @@
+.carousel-item img {
+    width: 100%; /* Ensure images are not hidden or set to a zero size */
+    height: 100vh; /* Maintain aspect ratio */
+}

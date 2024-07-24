@@ -1,0 +1,21 @@
+.food-menu-drop-down-container{
+    display: flex;
+    margin-left: 2%;
+}
+.food-menu-drop-down{
+    padding: 12px;
+    border-radius: 12px;
+    margin: 10px;
+    margin-bottom: 0px;
+    cursor: pointer;
+}  
+.food-menu-drop-down-button{
+    padding:0px;
+    padding-left: 20px;
+    height: 50px;
+    margin-top: 10px;
+    padding-right: 20px;
+    border-radius: 18px;
+    background: transparent;
+    border:1px solid black;
+}
