@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const PublicRoute = () => {
-  const token = Cookies.get("token_id");
+  const token = Cookies.get("jwt_id");
   return token ? <Navigate to="/" /> : <Outlet />;
 }
 

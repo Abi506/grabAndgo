@@ -1,7 +1,6 @@
 const express=require("mongoose")
 const food=require("../model/food")
 const rating=require("../model/ratings")
-const {getFoodWithAverageRating}=require("./services/ratingServices")
 
 //add food to the menu
 const handleAddFood=async(req,res)=>{
@@ -10,7 +9,8 @@ const handleAddFood=async(req,res)=>{
             name:req.body.name,
             description:req.body.description,
             category:req.body.category,
-            price:req.body.price
+            price:req.body.price,
+            foodImageUrl:req.file?req.file.filename:null
         })
         
         res.status(201).send(foodItem);
@@ -22,37 +22,89 @@ const handleAddFood=async(req,res)=>{
 
 //get all food menu
 const handleGetAllFoodMenus = async (req, res) => {
-    const { search } = req.query;
+    const { search, sort, priceRange, isPureVeg, skip } = req.query;
     console.log(search, 'name');
-    
+
     try {
-        let allFood;
-        
+        let pipeline = [];
+
+        // Search filter
         if (search) {
             const sanitizedSearch = search.replace(/"/g, '');
-            allFood = await food.find({ name: new RegExp(sanitizedSearch, "i") });
-            console.log(allFood,'all food')
+            pipeline.push({
+                $match: {
+                    name: new RegExp(sanitizedSearch, "i")
+                }
+            });
+        }
+
+        // Pure veg filter
+        if (isPureVeg === 'true') {
+            pipeline.push({
+                $match: {
+                    category: "Veg" // Assuming you have an `isPureVeg` field in your food schema
+                }
+            });
+        }
+
+        // Price range filter
+        if (priceRange === 'less_than_100') {
+            pipeline.push({
+                $match: {
+                    price: { $lt: 100 }
+                }
+            });
+        } else if (priceRange === '100_to_200') {
+            pipeline.push({
+                $match: {
+                    price: { $gte: 100, $lte: 200 }
+                }
+            });
+        }
+
+        // Sorting
+        if (sort) {
+            if (sort === 'low_to_high') {
+                pipeline.push({ $sort: { price: 1 } });
+            } else if (sort === 'high_to_low') {
+                pipeline.push({ $sort: { price: -1 } });
+            }
+        }
+
+        // Skip items
+        if (skip) {
+            pipeline.push({ $skip: parseInt(skip) });
+        }
+
+        let allFood;
+        if (pipeline.length > 0) {
+            // Aggregation query execution
+            allFood = await food.aggregate(pipeline);
         } else {
+            // No filters or sorting, get all food items
             allFood = await food.find();
         }
-        
+
         res.status(200).json(allFood);
     } catch (error) {
         console.error('Error while getting allFood:', error.message);
         res.status(500).send(`Error while getting the allFood: ${error.message}`);
     }
-}
+};
 
 //get a food by id
 const handleGetFoodById=async(req,res)=>{
+    const food_id=req.params.foodId
     try{
-        const food=await food.findById(req.params.id)
-        res.status(201).send(food)
-        }
-        catch(error){
-            console.log(error.message,'Error while getting food')
-            res.status(500).send(`Error while getting the food ${error.message}`)
-        }
+        console.log(food_id,'food id')
+        const getFoodById=await food.findById(food_id)
+        console.log(getFoodById,'get food by id')
+        res.send(getFoodById)
+    }
+    catch(error){
+        console.log(error.message)
+        res.send({error_msg:error.message})
+    }
 }
 
 //update food by id
@@ -101,6 +153,17 @@ const handleGetFoodByCategory=async(req,res)=>{
       }   
 }
 
+//get top rated food
+const handleGetTopRatedFood=async(req,res)=>{
+    try{
+        const foodItems=await food.find({})
+        res.send(foodItems)
+    }
+    catch(error){
+        res.status(500).send(error.message)
+    }
+}
+
 //delete food by id
 const handleDeleteFoodById=async (req, res) => {
     try {
@@ -142,4 +205,4 @@ const handleAddRatingToFood=async(req,res)=>{
       }
 }
 
-module.exports={handleGetAllFoodMenus,handleUpdateFoodById,handleGetFoodById,handleGetFoodByCategory,handleDeleteFoodById,handleAddRatingToFood,handleAddFood}
+module.exports={handleGetAllFoodMenus,handleGetTopRatedFood,handleUpdateFoodById,handleGetFoodById,handleGetFoodByCategory,handleDeleteFoodById,handleAddRatingToFood,handleAddFood}

@@ -26,8 +26,6 @@ const getData=()=>{
 useEffect(()=>{
   getData()
 },[])
-
-
   return (
     <Container>
       <h1 className='general-text'>What's on your mind?</h1>

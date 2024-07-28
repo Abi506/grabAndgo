@@ -8,6 +8,7 @@ import PrivateRoute from './components/protectedRoute/privateRoute'; // Import P
 import Login from './components/Login/login';
 import Register from './components/register/register';
 import { LoginContext } from './components/context/context';
+import AddFood from '../src/adminComponents/addFood/addFood'
 import './App.css';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/search" element={<Search />} />
+            <Route exact path="/add-dish" element={<AddFood/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

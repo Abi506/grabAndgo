@@ -5,7 +5,18 @@
     transition: transform 0.2s ease-in-out; /* Smooth transition for the container */
     cursor: pointer;
 }
+.custom-modal .modal-dialog{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
+}
+.custom-modal .modal-content{
+    width: 900px;
+    align-self: center;
+}
 /* Hover effect for the container */
 .menu-container:hover {
     transform: scale(0.95); /* Slight zoom-out effect */
@@ -81,4 +92,18 @@
     .food-menu-para {
         margin-left: 10%;
     }
+}
+.add-button-styles{
+    padding-left:20px !important;
+    padding-right: 20px !important;
+    background:white !important;
+    border: 1px solid rgb(215, 207, 207) !important;
+    border-radius: 6px !important;
+    font-weight: 900 !important;
+    color:rgb(27, 166, 114) !important;
+    box-shadow: shadow !important;
+}
+
+.add-button-styles:hover{
+    box-shadow:2px 2px 2px 2px rgb(185, 185, 182);
 }

@@ -12,6 +12,7 @@ const Register = () => {
     phoneNumber: "",
     photo: null
   });
+  const [error,setError]=useState("")
   const [isHide, setHide] = useState(true);
   const navigate = useNavigate();
   const { setLogged } = useContext(LoginContext); // Access setLogged from LoginContext
@@ -40,6 +41,7 @@ const Register = () => {
     const url = "http://localhost:3001/user/register";
     
     if (userDetails.username && userDetails.password && userDetails.email && userDetails.phoneNumber) {
+      if(userDetails.password.length>=6){
       const formData = new FormData();
 
       formData.append('username', userDetails.username);
@@ -54,31 +56,41 @@ const Register = () => {
             'Content-Type': 'multipart/form-data'
           }
         });
-        console.log('Response data:', response.data);
+        console.log('Response data:', response);
         if (response.status === 201 || response.status === 200) {
           setLogged(true);
           console.log('Navigating to login page...');
           navigate('/login');
         } else {
-          console.error('Unexpected response status:', response.status);
+          console.error('Unexpected response status:', response.data,);
+          
         }
       } catch (error) {
-        console.error('Error registering user:', error);
+        console.log(error)
+        console.log(error.response.data.error_msg)
+        const error_message=error.response.data.error_msg;
+        if(error_message.includes("duplicate key error") && (error_message.includes("email"))){
+          setError("Email already exists. Please use a different email.");
+        }
+        
       }
+    }else{
+      alert("Password should contain atleast 6 letters")
+    }
     } else {
       alert("Enter all the details");
     }
   };
-
+  console.log(error,'error messsage from state')
   return (
     <div className="login-container">
       <form className='login-mobile-container' onSubmit={registerUser}>
-        <h1 className='general-text' style={{ textAlign: "center", marginTop: "80px" }}>Grab & Go</h1>
+        <h1 className='general-text' style={{ textAlign: "center", marginTop: "50px" }}>Grab & Go</h1>
         
         <input
           type='email'
           name='email'
-          style={{ marginTop: "70px" }}
+          style={{ marginTop: "50px" }}
           placeholder='Email'
           className='login-input p-2'
           value={userDetails.email}
@@ -141,8 +153,12 @@ const Register = () => {
           className="login-input"
           onChange={handleFileChange}
         />
-        
-        <button className='btn login-button' type='submit'>Register</button>
+        <div>
+          {error&&(
+            <p style={{color:"red",fontFamily:"Roboto"}}>{error}</p>
+          )}
+        </div>
+        <button className='btn login-button' style={{marginTop:"0px"}} type='submit'>Register</button>
       </form>
     </div>
   );

@@ -8,10 +8,7 @@
     color: rgba(2, 6, 12, 0.92);
     overflow: hidden;
     width: 100%;
-    display: -webkit-box;
     overflow-wrap: break-word;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
     text-align:left;
     margin-top: 15px;
 }

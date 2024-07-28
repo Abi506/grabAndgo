@@ -17,7 +17,7 @@ const foodSchema=new Schema({
         type: Number,
         required: true,
     },
-    imageUrl: {
+    foodImageUrl: {
         type: String,
     },
     ratings: [

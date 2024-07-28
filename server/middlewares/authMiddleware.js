@@ -1,22 +1,19 @@
 const jwt=require('jsonwebtoken')
+const secret_key="jwt_id:506"
 
-const {verifyToken}=require("../auth")
-
-const tokenVerification=async(req,res,next)=>{
-    const token = req.cookies["jwt"];
+const verifyToken=async(req,res,next)=>{
+    const token=req.header("Authorization") && req.header("Authorization").split(" ")[1];
     if(!token){
-        res.redirect("/login")
+        return res.status(500).send({error_msg:"Access Denied. No Token Provided"})
     }
     try{
-        const user=await verifyToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWJpbmFkaGFuIiwiZW1haWwiOiJhYmkxMjMifQ.lJRWy8P4QD8JxQB4G_-7DzVYvcDXCTDVIzZu4ZeKoes")
-        console.log(user,'decrypted the user details')
-        req.user=user;
+        const decoded=await jwt.verify(token,secret_key)
+        req.user_details=decoded;
         next()
     }
     catch(error){
-        console.log("User given wrong jwt token")
-        res.redirect("/login")
+        res.status(401).json({error_messae:"Invalid Token"})
     }
-
 }
-module.exports=tokenVerification;
+
+module.exports=verifyToken;

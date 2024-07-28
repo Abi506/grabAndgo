@@ -35,8 +35,18 @@
 .search-dish-image{
     height: 100px;
     width: 100px;
+    margin:10px;
     flex-wrap: wrap;
     margin-right: 12px;
+    border-radius: 12px;
+    margin-left: 20px;
+}
+@media all and (max-width:550px)  {
+    .search-dish-image{
+        width:100px;
+        border-radius: 12px;
+    }
+    
 }
 .search-dish-heading{
     font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -55,6 +65,9 @@
 @media screen and (max-width: 790px) {
     .search-dish-para {
         max-width: 300px;
+    }
+    .search-list{
+        align-self: auto;
     }
 }
 @media screen and (max-width: 490px) {
