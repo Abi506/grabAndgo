@@ -1,26 +1,26 @@
 import Container from 'react-bootstrap/Container';
 import { useContext,useEffect,useState } from 'react';
-import { LoginContext } from '../context/context';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from 'react-router-dom';
 import {NavDropdown,Image} from 'react-bootstrap';
+import { useSelector,useDispatch } from 'react-redux';
 import cookie from 'js-cookie'
+import { setLogout } from '../../slices/login';
 
 
 function AppNavBar() {
 
-  const {isLogged}=useContext(LoginContext);
-  const [isLogin,setLogged]=useState()
+  const login=useSelector((state)=>state.loginInfo.isLogin)
+  console.log(login,'login from navbar')
+  const dispatch=useDispatch()
 
- useEffect(()=>{
-  setLogged(isLogged)
- })
 
   const navigate=useNavigate()
 
   const handleLogout=()=>{
     cookie.remove('jwt_id')
+    dispatch(setLogout())
     navigate("/login")
   }
 
@@ -35,7 +35,7 @@ function AppNavBar() {
             <Nav.Link href="/search">Search</Nav.Link>
             <Nav.Link href="/cart">Offers</Nav.Link>
             <Nav.Link href="/cart">Blogs</Nav.Link>
-            {isLogged===true &&(
+            {login===true &&(
               <>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>

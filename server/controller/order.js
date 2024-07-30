@@ -52,6 +52,6 @@ const handleGetOrderById = async (req, res) => {
     } catch (error) {
       res.status(400).send(error.message);
     }
-  };
+};
 
 module.exports={handleGetOrderById,handleGetAllOrdersBasedOUsernId,handleCreateOrder}

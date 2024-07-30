@@ -7,16 +7,11 @@ import PublicRoute from './components/protectedRoute/publicRoute'; // Import Pub
 import PrivateRoute from './components/protectedRoute/privateRoute'; // Import PrivateRoute
 import Login from './components/Login/login';
 import Register from './components/register/register';
-import { LoginContext } from './components/context/context';
 import AddFood from '../src/adminComponents/addFood/addFood'
 import './App.css';
 
 function App() {
-
-  const [isLogged, setLogged] = useState(false);
-
   return (
-    <LoginContext.Provider value={{ isLogged, setLogged }}>
       <BrowserRouter>
         <AppNavBar />
         <Routes>
@@ -31,7 +26,6 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </LoginContext.Provider>
   );
 }
 

@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState={
     isLogin:false
@@ -9,8 +9,7 @@ export const loginSlice=createSlice({
     initialState,
     reducers:{
         setLogin:(state,action)=>{
-            console.log(action.payload,'action payload')
-            state.isLogin=true
+            state.isLogin=action.payload
         },
         setLogout:(state,action)=>{
             state.isLogin=false

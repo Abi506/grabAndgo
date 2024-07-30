@@ -1,3 +1,4 @@
+Order request: user:undefined totalAmount: undefined Date: 2024-07-28T17:54:14.638Z - method: GET url: /users/profile
 Order request: user:undefined totalAmount: undefined Date: 2024-07-28T08:48:10.617Z - method: GET url: /66a2442eb3856ef6b57c85cb
 Order request: user:undefined totalAmount: undefined Date: 2024-07-28T08:47:58.719Z - method: GET url: /66a2442eb3856ef6b57c85cb
 Order request: user:undefined totalAmount: undefined Date: 2024-07-28T08:47:41.272Z - method: GET url: /66a2442eb3856ef6b57c85cb

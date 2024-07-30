@@ -42,7 +42,7 @@ const handleGetAllFoodMenus = async (req, res) => {
         if (isPureVeg === 'true') {
             pipeline.push({
                 $match: {
-                    category: "Veg" // Assuming you have an `isPureVeg` field in your food schema
+                    category: "Veg"
                 }
             });
         }

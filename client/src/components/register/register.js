@@ -1,8 +1,7 @@
-import { useState, useContext } from 'react';
+import { useState} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './register.css';
-import { LoginContext } from '../context/context'; // Adjust the import path as necessary
 
 const Register = () => {
   const [userDetails, setUserDetails] = useState({
@@ -15,7 +14,6 @@ const Register = () => {
   const [error,setError]=useState("")
   const [isHide, setHide] = useState(true);
   const navigate = useNavigate();
-  const { setLogged } = useContext(LoginContext); // Access setLogged from LoginContext
 
   const handleCheckbox = () => {
     setHide((prev) => !prev);
@@ -58,7 +56,6 @@ const Register = () => {
         });
         console.log('Response data:', response);
         if (response.status === 201 || response.status === 200) {
-          setLogged(true);
           console.log('Navigating to login page...');
           navigate('/login');
         } else {

@@ -1,6 +1,5 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
-import { LoginContext } from '../context/context';
 import { useNavigate } from 'react-router-dom';
 import cookie from 'js-cookie'
 import './login.css';
@@ -8,7 +7,6 @@ import './login.css';
 const Login = () => {
   const [userDetails, setUserDetails] = useState({ username: "", password: "" });
   const [isHide, setHide] = useState(true);
-  const { setLogged } = useContext(LoginContext); 
   const navigate = useNavigate();
 
   const handleCheckbox = () => {
@@ -35,7 +33,6 @@ const Login = () => {
         }
       });
 
-      setLogged(true);
       cookie.set("jwt_id",response.data.token)
       navigate("/");
     } catch (error) {

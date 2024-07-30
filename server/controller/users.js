@@ -83,4 +83,20 @@ const handleGetUserById = async (req, res) => {
   }
 };
 
-module.exports = { handleRegisterUser, handleGetAllUsers, handleGetUserById, handleLogin };
+const handleGetUserProfileDetails=async(req,res)=>{
+  const userdetails=req.user_details
+  console.log(userdetails,'userDetails from the profile')
+  try{
+  const userDetailsFromDatabase=await users.findById(userdetails.userId)
+  console.log(userDetailsFromDatabase,'user details from database')
+  res.status(200).send(userDetailsFromDatabase)
+}
+catch(error){
+  console.log(error.message)
+  res.status(500).send(error.message)
+}
+}
+
+
+
+module.exports = { handleRegisterUser, handleGetAllUsers, handleGetUserById, handleLogin,handleGetUserProfileDetails };

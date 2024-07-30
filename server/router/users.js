@@ -18,7 +18,7 @@ const upload = multer({ storage: storage });
 const router=express.Router();
 
 //handler goes here actual code
-const {handleRegisterUser,handleGetAllUsers,handleGetUserById,handleLogin}=require("../controller/users");
+const {handleRegisterUser,handleGetAllUsers,handleGetUserById,handleLogin, handleGetUserProfileDetails}=require("../controller/users");
 const { handleDeleteFoodById } = require("../controller/food");
 
 router.route('/register')
@@ -29,6 +29,9 @@ router.route("/login")
 
 router.route('/get-all-users')
 .get(tokenVerification,handleGetAllUsers)
+
+router.route('/profile')
+.get(tokenVerification,handleGetUserProfileDetails)
 
 router.route('/:id')
 .get(tokenVerification,handleGetUserById)
