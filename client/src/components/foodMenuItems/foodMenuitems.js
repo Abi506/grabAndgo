@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap';
 import { CiStar } from 'react-icons/ci';
+import { useDispatch } from 'react-redux';
+import { addItems } from '../../slices/cartSlice';
 import './foodMenuitems.css';
 
 const randomValues = [12, 30, 18, 24, 39, 47, 50, 17, 58, 5, 8, 40, 32, 21, 39, 8];
@@ -10,6 +12,7 @@ const FoodMenuitems = ({ menus }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedFood, setSelectedFood] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [showAlert,setAlert]=useState(false)
   const [itemPrice, setPrice] = useState('');
 
   const handleItem = (food) => {
@@ -36,8 +39,32 @@ const FoodMenuitems = ({ menus }) => {
 
   const handleClose = () => setModalOpen(false);
 
+  const dispatch=useDispatch()
+
+  const addItemsCart = () => {
+    const itemDetails = {
+        id: selectedFood._id,
+        foodImageUrl:selectedFood.foodImageUrl,
+        quantity: quantity,
+        price: selectedFood.price,
+        name: selectedFood.name
+    };
+    dispatch(addItems(itemDetails));
+    setAlert(true);
+
+    setTimeout(() => setAlert(false), 3000);
+
+    handleClose();
+};
+
+
   return (
     <Container>
+      {showAlert &&(
+      <div className='alert alert-success mt-5 alert-custom-styles'>
+        Added To Cart
+      </div>
+      )}
       <Row>
         {menus.map((each) => (
           <Col key={each._id} xs={6} sm={6} md={4} lg={4} xl={3} className='menu-container' onClick={() => handleItem(each)}>
@@ -79,20 +106,11 @@ const FoodMenuitems = ({ menus }) => {
               <p>{selectedFood.description}</p>
               <p>Price: ₹{selectedFood.price}</p>
               <p>Rating: {selectedFood.ratings.length > 0 ? selectedFood.ratings[0].value : 'No rating'}</p>
-              <div className='d-flex flex-direction-row justify-content-between w-75'>
-              <div className='d-flex flex-direction-row'>
-                <div>
-                <button type='button' className='btn btn-primary' onClick={decrementQuantity}> - </button>
-                <input type='text' className='p-1' value={quantity} style={{width:"50px",textAlign:"center",borderRadius:"5px",margin:'10px'}} readOnly /> 
-                <button type='button' className='btn btn-primary' onClick={incrementQuantity}> + </button>
-                </div>
               </div>
-              <div>
-                <p>₹{itemPrice}</p>
-              <button type='button' className='btn add-button-styles'>Add</button>
+              <div className='align-self-center'>
+              <button type='button' className='btn add-button-styles' onClick={addItemsCart}>Add</button>
               </div>
-              </div>
-              </div>
+              
             </div>
           )}
         </Modal.Body>

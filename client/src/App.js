@@ -8,6 +8,7 @@ import PrivateRoute from './components/protectedRoute/privateRoute'; // Import P
 import Login from './components/Login/login';
 import Register from './components/register/register';
 import AddFood from '../src/adminComponents/addFood/addFood'
+import Cart from './components/cart/cart';
 import './App.css';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/search" element={<Search />} />
+            <Route exact path="/cart" element={<Cart/>}/>
             <Route exact path="/add-dish" element={<AddFood/>}/>
           </Route>
         </Routes>

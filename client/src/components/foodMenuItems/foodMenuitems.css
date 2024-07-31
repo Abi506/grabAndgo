@@ -41,6 +41,11 @@
     transform: scale(0.9); /* Zoom-out effect */
 }
 
+.alert-custom-styles {
+    position: sticky !important; /* Use sticky positioning */
+    top: 0 !important; /* Stick to the top of the container */
+}
+
 /* Style for the food menu heading */
 .food-menu-heading {
     font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;

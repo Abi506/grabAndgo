@@ -50,8 +50,9 @@ function AppNavBar() {
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
             </NavDropdown>
-                <Nav.Link href="/profile">Profile</Nav.Link>
-                <Image
+            <Nav.Link href="/cart">Cart</Nav.Link>
+            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Image
                   src="/path/to/your/image.jpg" // Update with actual path or URL
                   style={{ backgroundColor: "black" }}
                   roundedCircle
