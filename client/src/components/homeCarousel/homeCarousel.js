@@ -1,7 +1,7 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-import { Image } from 'react-bootstrap';
+import './homeCarousel.css'
 
 import {
     homeBriyani, homeBurger, homeCake,
@@ -75,7 +75,7 @@ function HomeCarousel() {
         >
             {
                 carouselImages.map((eachImage,index)=>(
-                  <img src={eachImage.src} key={index} alt={eachImage.alt} style={{marginTop:"50px",width:"160px",background:"transparent"}} /> 
+                  <img src={eachImage.src} key={index} alt={eachImage.alt} className='carousel-image' style={{marginTop:"50px",width:"160px",background:"transparent"}} /> 
                 ))
             }
         </Carousel>

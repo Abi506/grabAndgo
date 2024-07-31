@@ -96,7 +96,7 @@ const FoodMenuitems = ({ menus }) => {
         </Modal.Header>
         <Modal.Body className='custom-modal-body'>
           {selectedFood && (
-            <div className='d-flex flex-direction-row'>
+            <div className='modal-custom-body'>
               <img
                 src={`http://localhost:3001/foodImages/${selectedFood.foodImageUrl}`}
                 alt={selectedFood.name}

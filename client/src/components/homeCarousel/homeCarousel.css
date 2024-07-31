@@ -2,3 +2,11 @@
     width: 100%; /* Ensure images are not hidden or set to a zero size */
     height: 100vh; /* Maintain aspect ratio */
 }
+.carousel-image{
+    transition: transform 0.3s ease;
+  cursor: pointer;
+  margin-left: 75px;
+}
+.carousel-image:hover{
+    transform: scale(1.1);
+}

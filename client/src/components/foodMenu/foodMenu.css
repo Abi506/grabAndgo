@@ -1,6 +1,7 @@
 .food-menu-drop-down-container{
     display: flex;
     margin-left: 2%;
+    flex-wrap: wrap;
 }
 .food-menu-drop-down{
     padding: 12px;

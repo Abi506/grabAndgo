@@ -1,12 +1,29 @@
+.custom-container{
+    width: 100% !important;
+    display: flex;
+}
 .custom-cart-styles{
     margin:10px;
     padding: 15px;
     border-radius: 12px;
-    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.custom-cart-styles:hover{
+    transform: scale(1.02); /* Zoom in effect */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+.cart-ul{
+    display: flex;
+    flex-direction: row;
+    padding:0px;
+    width:70%;
+    margin:0px;
+    flex-wrap: wrap;
 }
 .food-description-cart{
-    max-width: 250px;
-    min-width: 250px;
+    max-width: 20px;
+    min-width: 200px;
 }
 .empty-cart-container{
     display: flex;
@@ -14,7 +31,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: sans-serif;
 }
 .cart-image{
     width: 130px;
@@ -24,7 +41,7 @@
 .cart-heading{
     align-self: center;
     margin-left: 10px;
-    font-family: 'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: sans-serif;
 }
 .cart-quantity-styles{
     width: 30px;
@@ -38,5 +55,91 @@
     padding: 10px;
     font-size: 25px;
     border: none;
+}
+.checkout-table{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.checkout-summary{
+    font-family: sans-serif;
+}
+.table-head-styles{
+    background-color: #00A877;
+    color:white;
+    padding:20px;
+    border-radius: 8px;
+    display: flex;
+    border-bottom:0px;
+    border-top:0px;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.table-head-styles:hover{
+    transform: scale(1.02); /* Zoom in effect */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+.table-body-styles{
+    padding:15px;
+    border-radius: 12px;
+    width:300px;
+    border:1px solid #00A877;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table-body-styles:hover{
+    transform: scale(1.02); /* Zoom in effect */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+.table-body-styles-total-amount{
+    padding:10px;
+    border-radius: 8px;
+    border:none;
+    margin-top: 10px;
+    font-family: sans-serif;
+    display: flex;
+    border-top:0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    font-size: 22px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+@media all and (max-width:650px) {
+    .custom-container{
+        width:100% !important;
+        display: block;
+        
+    }
+    .cart-ul{
+        width: 100% !important;
+    }
+    .food-description-cart{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        min-width: 150px ;
+    }
+    .table-head-styles{
+        width: 100% !important;
+    }
+    .table-body-styles{
+        width: 100% !important;
+    }
+    .cart-heading{
+        align-self:flex-start;
+    }
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteItems, addItems } from '../../slices/cartSlice';
 import { Container } from 'react-bootstrap';
-import { IoMdTrash } from "react-icons/io";
+import RazorPay from '../razorPay/razorPay';
 import './cart.css';
 
 const Cart = () => {
@@ -20,49 +20,46 @@ const Cart = () => {
         })));
     }, [cart]);
 
-    const updateQuantityInCart = (id, quantity) => {
+    const updateQuantityInCart = (id, newQuantity) => {
         const item = localCart.find(item => item.id === id);
         if (item) {
             dispatch(addItems({
                 id,
-                quantity,
+                quantity: newQuantity,
                 price: item.price,
                 name: item.name,
-                totalPrice: quantity * item.price
+                foodImageUrl: item.foodImageUrl,
+                totalPrice: newQuantity * item.price
             }));
         }
     };
 
     const increment = (selectedFood) => {
-        const updatedQuantity = selectedFood.quantity + 1;
+        const newQuantity = selectedFood.quantity + 1;
         setLocalCart(prevCart => {
             const updatedCart = prevCart.map(item => {
                 if (item.id === selectedFood.id) {
-                    return { ...item, quantity: updatedQuantity, totalPrice: updatedQuantity * item.price };
+                    return { ...item, quantity: newQuantity, totalPrice: newQuantity * item.price };
                 }
                 return item;
             });
-            updateQuantityInCart(selectedFood.id, updatedQuantity);
             return updatedCart;
         });
+        updateQuantityInCart(selectedFood.id, newQuantity);
     };
 
     const decrement = (selectedFood) => {
-        const updatedQuantity=null
-        if(updatedQuantity>1){
-            updatedQuantity=selectedFood.quantity-1
-        }
-        console.log(updatedQuantity,'updated quantity')
+        const newQuantity = selectedFood.quantity > 1 ? selectedFood.quantity - 1 : 1;
         setLocalCart(prevCart => {
             const updatedCart = prevCart.map(item => {
                 if (item.id === selectedFood.id) {
-                    return { ...item, quantity: updatedQuantity, totalPrice: updatedQuantity * item.price };
+                    return { ...item, quantity: newQuantity, totalPrice: newQuantity * item.price };
                 }
                 return item;
             });
-            updateQuantityInCart(selectedFood.id, updatedQuantity);
             return updatedCart;
         });
+        updateQuantityInCart(selectedFood.id, newQuantity);
     };
 
     const cartDeleteItem = (id) => {
@@ -71,17 +68,22 @@ const Cart = () => {
         setTimeout(() => setAlert(false), 3000);
     };
 
+    // Calculate total amount
+    const totalAmount = localCart.reduce((acc, item) => acc + item.totalPrice, 0);
+
     return (
-        <Container className='w-75'>
-            {showAlert && (
-                <div className='alert alert-warning mt-4'>Item Removed From Cart</div>
-            )}
+        <>
+        {showAlert && (
+            <div className='alert alert-warning mt-4 w-75 align-self-center'>Item Removed From Cart</div>
+        )}
+        <Container className='custom-container'>
+            
             {localCart.length < 1 && (
                 <div className='empty-cart-container'>
                     <h1>Your Cart is Empty</h1>
                 </div>
             )}
-            <ul>
+            <ul className='cart-ul'>
                 {localCart.map((each, index) => (
                     <li key={index} className='shadow d-flex flex-direction-row justify-content-between custom-cart-styles'>
                         <div className='d-flex flex-direction-row food-description-cart'>
@@ -94,17 +96,47 @@ const Cart = () => {
                                 <input placeholder='Quantity' value={each.quantity} readOnly className='cart-quantity-styles' />
                                 <button type='button' className='add-button-styles' onClick={() => increment(each)}>+</button>
                             </div>
-                            <p>Total Price: ₹{each.totalPrice}</p>
+                            <p style={{fontSize:"18px",fontWeight:"600",fontFamily:"'Graphik', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif"}}>₹{each.totalPrice}</p>
                         </div>
-                        <div className='align-self-center'>
-                            <button onClick={() => cartDeleteItem(each.id)} className='trash-button-styles'>
-                                <IoMdTrash/>
+                        <div className='align-self-lg-center trash-button-mobile'>
+                            <button onClick={() => cartDeleteItem(each.id)} className='trash-button-styles'>                                    
+                                <div className='btn btn-close'>
+                                    
+                                </div>
                             </button>
                         </div>
                     </li>
                 ))}
             </ul>
+            {localCart.length > 0 && (
+                <div className='checkout-summary mt-4'>
+                    <h3>Checkout Summary</h3>
+                    <table className='checkout-table'>
+                        
+                            <tr className='table-head-styles'>
+                                <th>Item</th>
+                                <th>Price</th>
+                            </tr>
+                        
+                        <tbody>
+                            {localCart.map(item => (
+                                <tr key={item.id} className='table-body-styles'>
+                                    <td>{item.name}</td>
+                                    <td>₹{item.totalPrice}</td>
+                                </tr>
+                            ))}
+                            <tr className='table-body-styles-total-amount'>
+                                <td>Total Amount:</td> 
+                                <td>₹{totalAmount}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <RazorPay totalAmount={totalAmount}/>
+                </div>
+            )}
         </Container>
+        </>
     );
 };
 
