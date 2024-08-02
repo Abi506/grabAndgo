@@ -1,3 +1,5 @@
+Order request: user:undefined totalAmount: undefined Date: 2024-08-02T08:27:38.866Z - method: GET url: /foodImage/1721885686055%20-%20Screenshot%20(2).png
+Order request: user:undefined totalAmount: undefined Date: 2024-08-02T08:11:06.342Z - method: GET url: /favicon.ico
 Order request: user:undefined totalAmount: undefined Date: 2024-07-31T08:22:04.294Z - method: GET url: /foodImages/undefined
 Order request: user:undefined totalAmount: undefined Date: 2024-07-31T08:19:56.349Z - method: GET url: /foodImages/undefined
 Order request: user:undefined totalAmount: undefined Date: 2024-07-31T08:19:50.235Z - method: GET url: /foodImages/undefined

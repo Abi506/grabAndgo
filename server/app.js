@@ -29,7 +29,7 @@ app.use(express.static(path.resolve('./public')));
 
 // Routes path assigned here
 app.use('/user',userRouter);
-app.use("/food",tokenVerification,foodRouter);
+app.use("/food",foodRouter);
 
 // Middlewares
 app.use(orderLogs);

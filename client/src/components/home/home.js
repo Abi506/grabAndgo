@@ -1,5 +1,8 @@
 import {Container,Image, Row} from 'react-bootstrap'
 import axios from 'axios'
+import cookie from 'js-cookie'
+import { useDispatch } from 'react-redux'
+import { addProfileImage } from '../../slices/profileSlice'
 import {useState,useEffect} from 'react'
 
 import HomeCarousel from '../homeCarousel/homeCarousel'
@@ -11,6 +14,27 @@ import Login from '../Login/login'
 import './home.css'
 const Home = () => {
 const [data,setData]=useState([])
+
+const dispatch=useDispatch()
+
+const getProfileData=async()=>{
+  try{
+  const url="http://localhost:3001/user/profile"
+  const token=cookie.get("jwt_id")
+  const response=await axios.get(url,{
+      headers:{
+          Authorization:`Bearer ${token}`
+      }
+  })
+  console.log(response.data,'response for profile')
+  dispatch(addProfileImage(response.data.profileImageUrl))
+}
+catch(error){
+  console.log("error while getting the profile",error)
+  
+}
+
+}
 
 const getData=()=>{
   const url="https://dummyjson.com/c/6fcb-5998-4db8-879d"
@@ -25,6 +49,7 @@ const getData=()=>{
 }
 useEffect(()=>{
   getData()
+  getProfileData()
 },[])
   return (
     <Container>

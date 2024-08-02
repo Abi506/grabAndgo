@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const RazorPay = ({ totalAmount }) => {
     const [paymentSuccess, setPaymentSuccess] = useState(false);
-    
+   
     const handlePayment = (e) => {
         e.preventDefault();
         if (totalAmount === "") {
@@ -16,6 +16,7 @@ const RazorPay = ({ totalAmount }) => {
                 description: "Cart Checkout",
                 handler: function (response) {
                     setPaymentSuccess(true);
+                    console.log("Payment Response:", response);
                 },
                 prefill: {
                     name: "Abinandhan",
@@ -27,7 +28,7 @@ const RazorPay = ({ totalAmount }) => {
                 },
                 theme: {
                     color: "#00A877"
-                }
+                },
             };
             let pay = new window.Razorpay(options);
             pay.open();
@@ -37,7 +38,7 @@ const RazorPay = ({ totalAmount }) => {
     return (
         <div>
             <button type='button' className='btn btn-success w-100' onClick={handlePayment}>
-                Pay
+                Pay with UPI
             </button>
             {paymentSuccess && (
                 <div className='alert alert-success mt-3' role="alert">

@@ -15,6 +15,7 @@ function AppNavBar() {
   console.log(login,'login from navbar')
   const dispatch=useDispatch()
 
+  const profileImage=useSelector((state)=>state.profileImageInfo.profileImage)
 
   const navigate=useNavigate()
 
@@ -53,10 +54,10 @@ function AppNavBar() {
             <Nav.Link href="/cart">Cart</Nav.Link>
             <Nav.Link href="/profile">Profile</Nav.Link>
             <Image
-                  src="/path/to/your/image.jpg" // Update with actual path or URL
-                  style={{ backgroundColor: "black" }}
-                  roundedCircle
-                />
+              src={`http://localhost:3001/uploads/${profileImage}`}
+              style={{ backgroundColor: "black",borderRadius:"90px",width:"55px",height:"53px" }}
+              roundedCircle
+            />
             </>
           ) }
           </Nav>

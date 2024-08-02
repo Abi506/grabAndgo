@@ -8,6 +8,7 @@ import PrivateRoute from './components/protectedRoute/privateRoute'; // Import P
 import Login from './components/Login/login';
 import Register from './components/register/register';
 import AddFood from '../src/adminComponents/addFood/addFood'
+import Profile from './components/porfile/profile';
 import Cart from './components/cart/cart';
 import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/search" element={<Search />} />
             <Route exact path="/cart" element={<Cart/>}/>
             <Route exact path="/add-dish" element={<AddFood/>}/>
+            <Route exact path='/profile' element={<Profile/>}/>
           </Route>
         </Routes>
       </BrowserRouter>
